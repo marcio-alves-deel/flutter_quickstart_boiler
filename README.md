@@ -1,16 +1,137 @@
-# flutter_quickstart_boiler
+# Flutter Quickstart Boilerplate
 
-A new Flutter project.
+Thinking about the initial boring job of creating the entire structure of an application in flutter, I created this boilerplate to help this initial work with some basic implementations and a well-defined architecture.
+I hope this project is useful for you!
 
-## Getting Started
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/marciowelben/flutter_quickstart_boiler/Flutter)](https://github.com/marciowelben/flutter_quickstart_boiler/actions) [![Downloads](https://img.shields.io/github/downloads/marciowelben/flutter_quickstart_boiler/total)](https://github.com/marciowelben/flutter_quickstart_boiler/releases)   [![GitHub issues](https://img.shields.io/github/issues-raw/marciowelben/flutter_quickstart_boiler)](https://github.com/marciowelben/flutter_quickstart_boiler/issues)
 
-This project is a starting point for a Flutter application.
+## Table of Contents
 
-A few resources to get you started if this is your first Flutter project:
+- [Flutter Quickstart Boilerplate](#flutter-quickstart-boilerplate)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+    - [Clone](#clone)
+    - [Setup](#setup)
+    - [Run](#run)
+  - [Features](#features)
+  - [Organization](#organization)
+    - [Folders](#folders)
+      - [Features](#features-1)
+      - [Data](#data)
+      - [Domain](#domain)
+      - [Ui](#ui)
+  - [Tests](#tests)
+  - [Team](#team)
+  - [License](#license)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Installation
+
+In order to use this boiler, you will need to download or clone the repository and configure with your informations.
+
+### Clone
+Download or clone the [Repository](https://github.com/marciowelben/flutter_quickstart_boiler.git) on your PC.
+
+### Setup
+Inside your project directory install the dart packages running. <br>
+``` shell
+$ flutter pub get
+```
+
+Setup your configurations on `/lib/core/constants` and run your application.
+
+### Run
+
+```shell
+$ flutter run
+```
+
+## Features
+
+
+## Organization
+
+This project organize itself into features, each feature will have his own layers (Domain, Data and Ui), this abstraction will help to maintain and scale the application. This implementation is based on [Reso Coder](https://resocoder.com) clean architecture.
+
+### Folders
+
+```
+lib/
+|- core/
+|- features/
+|- main.dart
+|- data.dart
+|- domain.dart
+|- ui.dart
+|- core.dart
+```
+
+Core will handle the implementation for common features, for example, errors, contants, configurations, etc..
+
+We have the 1 file for each layer and 1 file for core.
+Those files will help us to share classes inside the application. For example: `core.dart` will have export all classes under core folder and group it as a package.
+
+Going deeper inside `features/` we will have:
+
+#### Features
+
+```
+feature/
+|- data/
+|- domain/
+|- ui/
+|- domain.dart
+|- ui.dart
+|- data.dart
+```
+
+As explained before, we have the same 3 files to export our layers.
+
+#### Data
+Our data layer will handle datasources, for example local storage as sharedpreferences, or remote sources like cloud storage, databases and etc, or even both.
+
+```
+data/
+|- datasources/
+|- models/
+|- repositories/
+```
+
+#### Domain
+Domain layer will be responsible for connecting the data source and ui trough usecases and models.
+
+```
+domain/
+|- entities/
+|- repositories/
+|- usecases/
+```
+
+#### Ui
+The ui will handle the entire visible part of the app. The one that the user will see, it will also comunicates with domain layer.
+
+```
+ui/
+|- layouts/
+|- pages/
+|- widgets/
+```
+
+## Tests
+
+
+## Team
+
+|                                                                                                                                                                              <a href="http://linkedin.com/in/marcio-montenegro" target="_blank">**Marcio Montenegro**</a>                                                                                                                                                                               |
+| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                                                                                                                                                                     [![Marcio Montenegro](https://avatars3.githubusercontent.com/u/31051083?s=140)](http://github.com/marciowelben)                                                                                                                                                                     |
+| <a href="https://github.com/marciowelben"><img src="https://image.flaticon.com/icons/png/512/25/25231.png" data-canonical-src="https://image.flaticon.com/icons/png/512/25/25231.png" width="30" /></a> <a href="https://linkedin.com/in/marcio-montenegro"><img src="https://clipartart.com/images/free-clipart-of-linkedin-symbols-1.png" data-canonical-src="https://clipartart.com/images/free-clipart-of-linkedin-symbols-1.png" width="30" /></a> |
+
+---
+
+## License
+
+[![license](https://img.shields.io/github/license/marciowelben/frontend_projects.svg)](/license)
+
+- [MIT](/license) 
+- &copy; Marcio Montenegro
