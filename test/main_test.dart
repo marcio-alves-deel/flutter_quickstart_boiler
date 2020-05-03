@@ -8,5 +8,5 @@
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  testWidgets('Dumb test', (WidgetTester tester) async {});
+  testWidgets('Main render', (WidgetTester tester) async {});
 }
