@@ -14,6 +14,9 @@ I hope this project is useful for you!
     - [Setup](#setup)
     - [Run](#run)
   - [Features](#features)
+    - [Internationalization](#internationalization)
+      - [Suppoting a new location](#suppoting-a-new-location)
+    - [Global Configuration](#global-configuration)
   - [Organization](#organization)
     - [Folders](#folders)
       - [Features](#features-1)
@@ -48,6 +51,72 @@ $ flutter run
 
 ## Features
 
+### Internationalization
+
+You can use a default configuration for internationalization support on the app.
+All the files with the strings should be created under `lib/core/intl/messages`.
+
+#### Suppoting a new location
+
+**New locations**
+
+In order to add new languages to the application, you need to open `lib/core/intl/intl_delegate.dart` and add the new language with the current ones for example, if you want to add support for Franch, you will change to.
+
+```
+@override
+  bool isSupported(Locale locale) =>
+      ['pt', 'en', 'fr].toList().contains(locale.languageCode);
+```
+
+You will do the same proccess on `main.dart`
+
+```
+ supportedLocales: [
+        Locale('en', 'US'),
+        Locale('pt', 'BR'),
+        Locale('fr'),
+      ],
+```
+
+Go to `lib/core/intl/messages` and add the file for your new language, continue with the example of French, we should create a file called `intl_fr.arb`. There you will write your translations.
+
+When finished the process you will need to generate the files correspondent to your language. 
+
+```shell
+$ flutter pub pub run intl_translation:generate_from_arb lib/core/intl/intl_config.dart lib/core/intl/messages/intl_fr.arb  --output-dir=lib/core/intl/generated
+```
+
+**New Strings**
+
+To create new strings for translations, you will first need to add the new values on `intl_config.dart`. 
+
+```
+String get newString => Intl.message('', name: 'newString');
+```
+
+You can add this line at the bottom of the class.<br>
+You will need to update you current .arb files with the new key.
+
+The last process is to re-generate the message files.
+
+
+```shell
+$ flutter pub pub run intl_translation:generate_from_arb lib/core/intl/intl_config.dart lib/core/intl/messages/*.arb  --output-dir=lib/core/intl/generated
+```
+
+### Global Configuration
+
+To set a bunch of basic configurations you need to find `lib/core/constants/envs` there you can create the files for each environment, e.g.: dev, test, prod, demo.
+
+You can add your keys for the environments (All environments must have same keys).
+
+For each key you add you will need to update `config.dart`
+
+```
+ AppConfig.fromJson(Map<String, dynamic> json)
+      : apiBaseUrl = json['apiBaseUrl'],
+        newKey = json['newKey'];
+```
 
 ## Organization
 
