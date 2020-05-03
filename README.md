@@ -62,15 +62,15 @@ All the files with the strings should be created under `lib/core/intl/messages`.
 
 In order to add new languages to the application, you need to open `lib/core/intl/intl_delegate.dart` and add the new language with the current ones for example, if you want to add support for Franch, you will change to.
 
-```
+```dart
 @override
   bool isSupported(Locale locale) =>
-      ['pt', 'en', 'fr].toList().contains(locale.languageCode);
+      ['pt', 'en', 'fr'].toList().contains(locale.languageCode);
 ```
 
 You will do the same proccess on `main.dart`
 
-```
+```dart
  supportedLocales: [
         Locale('en', 'US'),
         Locale('pt', 'BR'),
@@ -90,7 +90,7 @@ $ flutter pub pub run intl_translation:generate_from_arb lib/core/intl/intl_conf
 
 To create new strings for translations, you will first need to add the new values on `intl_config.dart`. 
 
-```
+```dart
 String get newString => Intl.message('', name: 'newString');
 ```
 
@@ -112,7 +112,7 @@ You can add your keys for the environments (All environments must have same keys
 
 For each key you add you will need to update `config.dart`
 
-```
+```dart
  AppConfig.fromJson(Map<String, dynamic> json)
       : apiBaseUrl = json['apiBaseUrl'],
         newKey = json['newKey'];
